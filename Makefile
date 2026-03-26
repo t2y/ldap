@@ -47,7 +47,7 @@ local-server:
 	@$(CONTAINER_CMD) exec $(CONTAINER_NAME) /bin/sh -c 'for file in /testdata/*.ldif; do echo "Processing $$file..."; cat "$$file" | ldapadd -v -x -H $(LDAP_URL) -D "$(LDAP_ADMIN_DN)" -w $(LDAP_ADMIN_PASSWORD); done'
 
 stop-local-server:
-	-$(CONTAINER_CMD) rm -f -t 10 $(CONTAINER_NAME)
+	-$(CONTAINER_CMD) rm -f $(CONTAINER_NAME)
 
 test:
 	go test -v -cover -race -count=1 .
